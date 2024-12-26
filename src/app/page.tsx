@@ -1,5 +1,19 @@
+"use client"
+
+import { useEffect,useState } from "react";
+import api from "../app/services/api"
 
 export default function Home() {
+  const [advice, setAdvice] = useState ("");
+
+  useEffect(()=>{
+    api.get("slip").then(({data})=>{
+      setAdvice(data.slip.advice);
+    });
+
+  },[])
+  console.log(advice)
+
   return (
     <div className="container h-screen w-screen mx-auto flex items-center justify-center">
       <div className="flex flex-col bg-slate-200 shadow-lg shadow-gray-300 py-3 px-4 mx-10 rounded-lg">
