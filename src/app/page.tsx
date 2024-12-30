@@ -2,16 +2,20 @@
 
 import { useEffect,useState } from "react";
 import axios from "axios";
-import { error } from "console";
+
 
 export default function Home() {
   const [advice, setAdvice] = useState ("");
 
   useEffect(()=>{
-    axios.get('https://api.adviceslip.com/advice')
-    .then((response)=>console.log(response))
-    .catch((error)=>console.log(error))
-    .finally(console.log("dentro do finally"));
+    async function fechadvice() {
+      try{
+        const response = await axios.get("https://api.adviceslip.com/advice");
+        setAdvice(response.data.slip);
+      }catch(error){
+        console.error('Erro ao buscar dados:', error)
+      }
+    }
   }),[]
 
   return (
@@ -21,7 +25,11 @@ export default function Home() {
           <h1 className="text-2xl font-semibold">ADVICE</h1>
         </div>
         <div className="flex mt-9 items-center justify-center">
-          <h2 className="text-lg font-medium">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
+          <ul>
+          {advice.map((slip)=>(
+            <h2 key={slip.id} className="text-lg font-medium text-center">{slip.advice}</h2>
+          ))}
+          </ul>
         </div>
         <div className="flex items-center justify-center mt-7">
           <button className="bg-blue-500 py-2 px-5 rounded">
@@ -32,10 +40,3 @@ export default function Home() {
     </div>
   );
 }
-
-  // useEffect(()=>{
-  //   api.get("slip").then(({data})=>{
-  //     setAdvice(data.slip.advice);
-  //   });
-
-  // },[])
