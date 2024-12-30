@@ -7,15 +7,16 @@ import axios from "axios";
 export default function Home() {
   const [advice, setAdvice] = useState (null);
 
-  useEffect(() => {
-    async function fetchAdvice() {
-      try {
-        const response = await axios.get("https://api.adviceslip.com/advice");
-        setAdvice(response.data.slip);
-      } catch (error) {
-        console.error("Erro ao buscar dados:", error);
-      }
+  async function fetchAdvice() {
+    try {
+      const response = await axios.get("https://api.adviceslip.com/advice");
+      setAdvice(response.data.slip);
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
     }
+  }
+
+  useEffect(() => {
     fetchAdvice();
   }, []);
 
@@ -35,7 +36,7 @@ export default function Home() {
           </ul>
         </div>
         <div className="flex items-center justify-center mt-7">
-          <button onClick={fetchAdvice()} className="bg-blue-500 py-2 px-5 rounded">
+          <button onClick={fetchAdvice} className="bg-blue-500 py-2 px-5 rounded">
             <span className="text-base font-normal text-slate-100">Seguinte→</span>
           </button>
         </div>

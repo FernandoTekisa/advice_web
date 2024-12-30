@@ -1,6 +1,7 @@
 "use client"
 
-import Advice from "./advice"
+import Advice from "./Advice"
+
 
 export default function page(){
   return(
