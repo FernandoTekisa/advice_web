@@ -1,18 +1,18 @@
 "use client"
 
 import { useEffect,useState } from "react";
-import api from "../app/services/api"
+import axios from "axios";
+import { error } from "console";
 
 export default function Home() {
   const [advice, setAdvice] = useState ("");
 
   useEffect(()=>{
-    api.get("slip").then(({data})=>{
-      setAdvice(data.slip.advice);
-    });
-
-  },[])
-  console.log(advice)
+    axios.get('https://api.adviceslip.com/advice')
+    .then((response)=>console.log(response))
+    .catch((error)=>console.log(error))
+    .finally(console.log("dentro do finally"));
+  }),[]
 
   return (
     <div className="container h-screen w-screen mx-auto flex items-center justify-center">
@@ -32,3 +32,10 @@ export default function Home() {
     </div>
   );
 }
+
+  // useEffect(()=>{
+  //   api.get("slip").then(({data})=>{
+  //     setAdvice(data.slip.advice);
+  //   });
+
+  // },[])
