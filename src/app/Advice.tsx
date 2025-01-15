@@ -37,7 +37,7 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-center mt-7">
           <button onClick={fetchAdvice} className="bg-blue-500 py-2 px-5 rounded">
-            <span className="text-base font-normal text-slate-100">Seguinte→</span>
+            <span className="text-base font-normal text-slate-100">Get Start!</span>
           </button>
         </div>
       </div>
