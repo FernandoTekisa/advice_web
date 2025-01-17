@@ -5,7 +5,13 @@ import axios from "axios";
 
 
 export default function Home() {
-  const [advice, setAdvice] = useState (null);
+
+  interface Advice{
+    id: number;
+    advice: string;
+  }
+
+  const [advice, setAdvice] = useState<Advice | null>(null);
 
   async function fetchAdvice() {
     try {
@@ -37,7 +43,7 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-center mt-7">
           <button onClick={fetchAdvice} className="bg-blue-500 py-2 px-5 rounded">
-            <span className="text-base font-normal text-slate-100">Seguinte→</span>
+            <span className="text-base font-normal text-slate-100">Get start</span>
           </button>
         </div>
       </div>
